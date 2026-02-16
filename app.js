@@ -1,10 +1,10 @@
 import express from "express";
-import prompt from 'prompt';
 import axios from "axios";
 import dotenv from 'dotenv';
 import os from "os";
  import fs from "fs";
 dotenv.config()
+
 // const port=process.env.PORT || 3000;
 const port=process.env.PORT || 3000;
 const app = express();
@@ -48,3 +48,16 @@ app.get("./", (req, res) => {
 app.listen(port, () => {
     console.log(`program is running on port:${port} `);
 })
+fs.readFile("mahdi.txt","utf-8", (err, data)=> {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log(data);
+    }
+})
+const user={
+    username:"mahdi keshavarz",
+    password:"12345",
+    age:23,
+}
