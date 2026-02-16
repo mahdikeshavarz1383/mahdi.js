@@ -61,3 +61,8 @@ const user={
     password:"12345",
     age:23,
 }
+const raw=JSON.stringify(user,null,2);
+fs.writeFile("data.json",raw, (err,)=>{
+    if (err) {console.log(err); return;}
+})
+console.log(raw);
