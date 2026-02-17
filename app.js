@@ -38,3 +38,18 @@ fs.writeFile("data.txt",raw,(err)=>{
     else {console.log("saved");}
 })
 console.log("this is new version");
+
+
+//------------------------------------------------------------
+
+
+import TelegramBot from "node-telegram-bot-api";
+
+const token = "8514695680:AAHuSI9xRCCVDeKJpCTuo-EkdKMOE4CFTws"; 
+
+const bot = new TelegramBot(token, { polling: true });
+
+bot.on("message", (msg) => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(chatId, "سلام مهدی! رباتت الان فعاله 😎");
+});
