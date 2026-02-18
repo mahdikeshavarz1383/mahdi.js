@@ -4,8 +4,11 @@ import dotenv from 'dotenv';
 import os from "os";
  import fs from "fs";
 dotenv.config()
+import promptSync from 'prompt-sync';
+ const prompt = promptSync({ sigint: true });
 
-// const port=process.env.PORT || 3000;
+import { json } from 'stream/consumers';
+//const port=process.env.PORT || 3000;
 const port=3000;
 const app = express();
 //const API_KEY="6351130fc60eeb5af150f6ea411eba42";
@@ -43,13 +46,34 @@ console.log("this is new version");
 //------------------------------------------------------------
 
 
-import TelegramBot from "node-telegram-bot-api";
+// import TelegramBot from "node-telegram-bot-api";
 
-const token = "8514695680:AAHuSI9xRCCVDeKJpCTuo-EkdKMOE4CFTws"; 
+// const token = "8514695680:AAHuSI9xRCCVDeKJpCTuo-EkdKMOE4CFTws"; 
 
-const bot = new TelegramBot(token, { polling: true });
+// const bot = new TelegramBot(token, { polling: true });
 
-bot.on("message", (msg) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, "سلام مهدی! رباتت الان فعاله 😎");
-});
+// bot.on("message", (msg) => {
+//     const chatId = msg.chat.id;
+//     bot.sendMessage(chatId, "سلام مهدی! رباتت الان فعاله 😎");
+// });
+
+
+
+const userOfdData=[]
+while (true) {
+    const inputName=prompt("enter your name");
+    if (inputName) {
+        if (inputName==="exit") {break;}
+        else{
+            const inputPhone=prompt("enter your phone");
+            userOfdData.push(inputName);
+            userOfdData.push(inputPhone);
+        }
+    }
+
+}
+const output=JSON.stringify(userOfdData,null,2)
+fs.writeFile("user.json",output, (err,data)=>{
+    if (err) {console.log(err);}
+})
+console.log("saved");
