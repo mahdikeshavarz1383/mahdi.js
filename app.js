@@ -1,3 +1,4 @@
+console.time("mahdi");
 import express from "express";
 import axios from "axios";
 import dotenv from 'dotenv';
@@ -8,8 +9,8 @@ import promptSync from 'prompt-sync';
  const prompt = promptSync({ sigint: true });
 
 import { json } from 'stream/consumers';
-//const port=process.env.PORT || 3000;
-const port=3000;
+const port=process.env.PORT || 3000;
+//const port=3000;
 const app = express();
 //const API_KEY="6351130fc60eeb5af150f6ea411eba42";
 fs.readFile("mahdi.txt","utf-8", (err, data)=> {
@@ -37,7 +38,7 @@ app.listen(port, ()=>{
  console.log(`the program is runnig on port:${port}`)   
 })
 fs.writeFile("data.txt",raw,(err)=>{
-    if (err) {console.log()}
+    if (err) {console.log(err);}
     else {console.log("saved");}
 })
 console.log("this is new version");
@@ -57,7 +58,7 @@ console.log("this is new version");
 //     bot.sendMessage(chatId, "سلام مهدی! رباتت الان فعاله 😎");
 // });
 
-
+//------------------------------------------------------------
 
 const userOfdData=[]
 while (true) {
@@ -77,3 +78,41 @@ fs.writeFile("user.json",output, (err,data)=>{
     if (err) {console.log(err);}
 })
 console.log("saved");
+fs.writeFile("user.txt",output,(err)=>{
+    if(err) {console.log(`this is:${err}`)}
+})
+//---------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.timeEnd("mahdi");
