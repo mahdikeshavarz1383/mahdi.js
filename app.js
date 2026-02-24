@@ -9,8 +9,9 @@ import promptSync from 'prompt-sync';
  const prompt = promptSync({ sigint: true });
 
 import { json } from 'stream/consumers';
-const port=process.env.PORT || 3000;
-//const port=3000;
+
+//const port=process.env.PORT || 3000;
+const port=3000;
 const app = express();
 //const API_KEY="6351130fc60eeb5af150f6ea411eba42";
 fs.readFile("mahdi.txt","utf-8", (err, data)=> {
@@ -21,22 +22,22 @@ fs.readFile("mahdi.txt","utf-8", (err, data)=> {
         console.log(data);
     }
 })
-const user={
-    username:"mahdi keshavarz",
-    password:"12345",
-    age:23,
-}
+ const user={
+     username:"mahdi keshavarz",
+     password:"12345",
+     age:23,
+ }
 const raw=JSON.stringify(user,null,2);
 fs.writeFile("data.json",raw, (err,)=>{
     if (err) {console.log(err); return;}
 })
 console.log(raw);
-app.get("/", (req, res)=>{
-    res.send(raw);
-})
-app.listen(port, ()=>{
- console.log(`the program is runnig on port:${port}`)   
-})
+//  app.get("/", (req, res)=>{
+//     res.send(raw);
+//  })
+//  app.listen(port, ()=>{
+//   console.log(`the program is runnig on port:${port}`)   
+//  })
 fs.writeFile("data.txt",raw,(err)=>{
     if (err) {console.log(err);}
     else {console.log("saved");}
@@ -67,6 +68,7 @@ while (true) {
         if (inputName==="exit") {break;}
         else{
             const inputPhone=prompt("enter your phone");
+           
             userOfdData.push(inputName);
             userOfdData.push(inputPhone);
         }
@@ -82,10 +84,26 @@ fs.writeFile("user.txt",output,(err)=>{
     if(err) {console.log(`this is:${err}`)}
 })
 //---------------------------------------------------------
+// app.get("/", (req, res)=>{
+//     res.json({time:new Date.toLocalestring()});
+//     console.log(time)
+// });
+// app.listen(port, ()=>{
+//     console.log(`saved on port:${port}`);
+// })
 
-
-
-
+const customer={
+    name:"mahdi",
+    phone:"12",
+}
+const customerOfjson=JSON.stringify(customer,null,2)
+console.log(customerOfjson);
+app.get("/", (req, res)=>{
+    res.JSON(customerOfjson);
+})
+app.listen(port, ()=>{
+    console.log(`the prohram is running on port`);;
+})
 
 
 
