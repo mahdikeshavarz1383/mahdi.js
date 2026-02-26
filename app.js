@@ -7,7 +7,7 @@ import os from "os";
 dotenv.config()
 import promptSync from 'prompt-sync';
  const prompt = promptSync({ sigint: true });
-
+console.log(os.freemem());
 import { json } from 'stream/consumers';
 
 //const port=process.env.PORT || 3000;
@@ -28,16 +28,17 @@ fs.readFile("mahdi.txt","utf-8", (err, data)=> {
      age:23,
  }
 const raw=JSON.stringify(user,null,2);
-fs.writeFile("data.json",raw, (err,)=>{
+fs.writeFile("data.json",raw, (err,data)=>{
     if (err) {console.log(err); return;}
+    else{console.log(data);}
 })
-console.log(raw);
-//  app.get("/", (req, res)=>{
-//     res.send(raw);
-//  })
-//  app.listen(port, ()=>{
-//   console.log(`the program is runnig on port:${port}`)   
-//  })
+
+ app.get("/", (req, res)=>{
+    res.send(raw);
+ })
+  app.listen(port, ()=>{
+  console.log(`the program is runnig on port:${port}`)   
+  })
 fs.writeFile("data.txt",raw,(err)=>{
     if (err) {console.log(err);}
     else {console.log("saved");}
@@ -45,19 +46,6 @@ fs.writeFile("data.txt",raw,(err)=>{
 console.log("this is new version");
 
 
-//------------------------------------------------------------
-
-
-// import TelegramBot from "node-telegram-bot-api";
-
-// const token = "8514695680:AAHuSI9xRCCVDeKJpCTuo-EkdKMOE4CFTws"; 
-
-// const bot = new TelegramBot(token, { polling: true });
-
-// bot.on("message", (msg) => {
-//     const chatId = msg.chat.id;
-//     bot.sendMessage(chatId, "سلام مهدی! رباتت الان فعاله 😎");
-// });
 
 //------------------------------------------------------------
 
@@ -76,59 +64,84 @@ while (true) {
 
 }
 const output=JSON.stringify(userOfdData,null,2)
+
 fs.writeFile("user.json",output, (err,data)=>{
     if (err) {console.log(err);}
+    else{console.log(data);}
 })
-console.log("saved");
+
 fs.writeFile("user.txt",output,(err)=>{
     if(err) {console.log(`this is:${err}`)}
 })
+
 //---------------------------------------------------------
-// app.get("/", (req, res)=>{
-//     res.json({time:new Date.toLocalestring()});
-//     console.log(time)
-// });
+// app.get("/", (req,res)=>{
+//     res.send(output);
+// })
 // app.listen(port, ()=>{
-//     console.log(`saved on port:${port}`);
+//     console.log(`the program is running on port :${port}`);
+// })
+//.............................
+
+// const customerOfjson=JSON.stringify(customer,null,2)
+// console.log(customerOfjson);
+// app.get("/", (req, res)=>{
+//     res.send(customerOfjson);
+// })
+// app.listen(port, ()=>{
+//     console.log(`the prohram is running on port`);;
 // })
 
-const customer={
-    name:"mahdi",
-    phone:"12",
-}
-const customerOfjson=JSON.stringify(customer,null,2)
-console.log(customerOfjson);
-app.get("/", (req, res)=>{
-    res.JSON(customerOfjson);
-})
-app.listen(port, ()=>{
-    console.log(`the prohram is running on port`);;
-})
+//-------------------------------------------------------------------------
 
 
 
 
+// const API_KEY = "6351130fc60eeb5af150f6ea411eba42";
 
+// app.get("/weather/:city", async (req, res) => {
+//   const city = req.params.city;
 
+//   try {
+//     const url =`http://api.openweathermap.org/data/2.5/weather? q=${city}&appid=${API_KEY}&units=metric&lang=fa`
 
+//     const response = await axios.get(url);
 
+//     const data = response.data;
 
+//     res.json({
+//       city: data.name,
+//       temp: data.main.temp,
+//       feels_like: data.main.feels_like,
+//       humidity: data.main.humidity,
+//       description: data.weather[0].description,
+//       wind: data.wind.speed
+//     });
 
+//   } catch (err) {
+//     res.json({ error: "شهر پیدا نشد یا مشکلی در API وجود دارد" });
+//   }
+// });
 
+// app.listen(port, () => {
+//   console.log(`Weather API is running on http://localhost:${port})`);})
 
+//-----------------------------------------------------------------------------------
 
+// import TelegramBot from "node-telegram-bot-api";
 
+// const token = "8638909410:AAG8M8Q2pKf7MFxM9941MJe1_GDUZumQjuc";
 
+// // فعال کردن Long Polling
+// const bot = new TelegramBot(token, { polling: true });
 
+// // وقتی کاربر /start بزند
+// bot.onText(/\/start/, (msg) => {
+//   const chatId = msg.chat.id;
+//   bot.sendMessage(chatId, "سلام");
+// });
 
-
-
-
-
-
-
-
-
+//-----------------------------------------------
 
 
 
